@@ -462,6 +462,14 @@ const fabiInput = document.getElementById('fabi-input');
 const fabiMessages = document.getElementById('fabi-messages');
 const fabiQuickQuestions = document.querySelectorAll('.fabi-question');
 
+if (fabiAssistant) {
+  fabiAssistant.classList.remove('is-open');
+}
+
+if (fabiTrigger) {
+  fabiTrigger.setAttribute('aria-expanded', 'false');
+}
+
 const fabiResponses = [
   {
     keywords: ['ciclo', 'irregular', 'menstrual', 'menstrua'],
@@ -506,6 +514,8 @@ const fabiResponses = [
 ];
 
 function addFabiMessage(text, sender = 'bot') {
+  if (!fabiMessages) return;
+
   const message = document.createElement('div');
   message.className = `fabi-message ${sender}`;
   message.textContent = text;
@@ -513,12 +523,42 @@ function addFabiMessage(text, sender = 'bot') {
   fabiMessages.scrollTop = fabiMessages.scrollHeight;
 }
 
+function openFabiAssistant() {
+  if (fabiAssistant) {
+    fabiAssistant.classList.add('is-open');
+  }
+
+  if (fabiTrigger) {
+    fabiTrigger.setAttribute('aria-expanded', 'true');
+  }
+}
+
+function handleFabiPrompt(value) {
+  const trimmedValue = String(value || '').trim();
+  if (!trimmedValue) return;
+
+  openFabiAssistant();
+  addFabiMessage(trimmedValue, 'user');
+  addFabiMessage(getFabiReply(trimmedValue), 'bot');
+}
+
 function getFabiReply(input) {
   const text = input.toLowerCase();
-  const match = fabiResponses.find((response) => response.keywords.some((keyword) => text.includes(keyword)));
+  let bestMatch = null;
+  let bestScore = 0;
 
-  if (match) {
-    return match.text;
+  fabiResponses.forEach((response) => {
+    const matches = response.keywords.filter((keyword) => text.includes(keyword));
+    const score = matches.reduce((total, keyword) => total + keyword.length, 0);
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestMatch = response;
+    }
+  });
+
+  if (bestMatch && bestScore > 0) {
+    return bestMatch.text;
   }
 
   return 'Entendi. Isso pode ter várias causas, e a melhor forma de orientar é observar seus sintomas e, se persistirem, conversar com um profissional de saúde. Se quiser, posso te ajudar com perguntas mais específicas sobre ciclo, corrimento, dor, sexo ou saúde íntima.';
@@ -526,20 +566,17 @@ function getFabiReply(input) {
 
 if (fabiTrigger) {
   fabiTrigger.addEventListener('click', () => {
+    if (!fabiAssistant) return;
     const isOpen = fabiAssistant.classList.toggle('is-open');
     fabiTrigger.setAttribute('aria-expanded', String(isOpen));
   });
 }
 
-if (fabiQuickQuestions.length) {
-  fabiQuickQuestions.forEach((question) => {
-    question.addEventListener('click', () => {
-      const value = question.textContent.trim();
-      addFabiMessage(value, 'user');
-      addFabiMessage(getFabiReply(value), 'bot');
-    });
+fabiQuickQuestions.forEach((questionButton) => {
+  questionButton.addEventListener('click', () => {
+    handleFabiPrompt(questionButton.textContent);
   });
-}
+});
 
 if (fabiForm) {
   fabiForm.addEventListener('submit', (event) => {
@@ -550,8 +587,7 @@ if (fabiForm) {
       return;
     }
 
-    addFabiMessage(value, 'user');
-    addFabiMessage(getFabiReply(value), 'bot');
+    handleFabiPrompt(value);
     fabiForm.reset();
     fabiInput.focus();
   });
