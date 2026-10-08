@@ -1,0 +1,28 @@
+{
+  "name": "femcare",
+  "version": "1.0.0",
+  "description": "FemCare é uma plataforma digital criada para acolher mulheres em todas as fases da vida e ajudar na compreensão das mudanças que o corpo feminino pode passar ao longo do tempo. A proposta é transformar informações sobre saúde, biologia e bem-estar em conteúdo acessível, simples e educativo, com linguagem clara e respeitosa.",
+  "main": "script.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariahelena16/FemCare---App-para-mulheres.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mariahelena16/FemCare---App-para-mulheres/issues"
+  },
+  "homepage": "https://github.com/mariahelena16/FemCare---App-para-mulheres#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "mysql2": "^3.24.5"
+  }
+}

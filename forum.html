@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FemCare | Fórum</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+      :root {
+        --bg: #fff5f8;
+        --panel: #fffdfd;
+        --panel-alt: #fff1f6;
+        --pink-50: #ffe9f2;
+        --pink-100: #ffd5e8;
+        --pink-500: #e58bb7;
+        --pink-700: #9c5678;
+        --text: #4a2d3d;
+        --muted: #785a6a;
+        --line: rgba(156, 86, 120, 0.14);
+        --shadow: 0 18px 40px rgba(160, 106, 143, 0.12);
+        --font-body: 'Manrope', 'Segoe UI', sans-serif;
+        --font-display: 'Cormorant Garamond', Georgia, serif;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: var(--font-display);
+        background: radial-gradient(circle at top, #fff7fb 0%, #fff2f7 26%, #ffeef7 100%);
+        color: var(--text);
+      }
+
+      p,
+      li,
+      span,
+      a,
+      input,
+      textarea,
+      button,
+      label,
+      .status,
+      .post-content,
+      .post-time,
+      .auth-subtitle {
+        font-family: var(--font-display);
+      }
+
+      h1, h2, h3, h4, h5, h6,
+      .brand,
+      .auth-header h1,
+      .feed-header h2,
+      .post-author {
+        font-family: var(--font-display);
+        letter-spacing: -0.03em;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      button, input, textarea { font: inherit; }
+
+      .container {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(255, 248, 251, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        min-height: 76px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+      }
+
+      .brand-logo {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        object-fit: cover;
+        border: 1px solid rgba(117, 75, 60, 0.12);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .page {
+        padding: 28px 0 60px;
+      }
+
+      .forum-shell {
+        display: grid;
+        grid-template-columns: 360px minmax(0, 1fr);
+        gap: 24px;
+      }
+
+      .panel {
+        background: rgba(255,255,255,0.8);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+      }
+
+      .auth-panel {
+        padding: 22px 18px;
+      }
+
+      .auth-header h1 {
+        margin: 0;
+        font-size: clamp(2rem, 3vw, 3rem);
+        letter-spacing: -0.04em;
+        line-height: 1.1;
+      }
+
+      .auth-subtitle {
+        margin: 10px 0 20px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .auth-tabs {
+        display: inline-flex;
+        padding: 5px;
+        background: var(--pink-50);
+        border-radius: 999px;
+        margin-bottom: 18px;
+      }
+
+      .auth-tab {
+        border: none;
+        background: transparent;
+        color: var(--muted);
+        padding: 10px 18px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 700;
+      }
+
+      .auth-tab.active {
+        background: white;
+        color: var(--text);
+        box-shadow: 0 8px 18px rgba(168, 118, 146, 0.08);
+      }
+
+      .auth-form {
+        display: none;
+        gap: 14px;
+      }
+
+      .auth-form.active {
+        display: grid;
+      }
+
+      .field {
+        display: grid;
+        gap: 6px;
+      }
+
+      label {
+        font-weight: 700;
+        font-size: 0.92rem;
+      }
+
+      input, textarea {
+        width: 100%;
+        border-radius: 14px;
+        border: 1px solid rgba(117, 75, 60, 0.12);
+        background: rgba(255,255,255,0.9);
+        color: var(--text);
+        padding: 12px 14px;
+      }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 20px;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 700;
+        transition: transform 0.2s ease;
+      }
+
+      .button:hover { transform: translateY(-1px); }
+
+      .button.primary {
+        background: linear-gradient(135deg, #e68bb3, #c46d9a 46%, #a7507e);
+        color: white;
+        box-shadow: 0 18px 32px rgba(188, 112, 154, 0.22);
+      }
+
+      .button.secondary {
+        background: rgba(255,255,255,0.7);
+        border: 1px solid var(--line);
+        color: var(--text);
+      }
+
+      .status {
+        min-height: 22px;
+        font-size: 0.92rem;
+        color: var(--muted);
+      }
+
+      .status.error { color: #8a3859; }
+      .status.success { color: #23674e; }
+
+      .feed {
+        padding: 22px 18px;
+      }
+
+      .feed-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .feed-header h2 {
+        margin: 0;
+        font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+        letter-spacing: -0.04em;
+      }
+
+      .compose {
+        display: grid;
+        gap: 12px;
+        padding: 18px;
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250, 236, 243, 0.9));
+        border: 1px solid rgba(180, 122, 155, 0.12);
+        margin-bottom: 18px;
+      }
+
+      .compose.hidden { display: none; }
+
+      .posts {
+        display: grid;
+        gap: 14px;
+      }
+
+      .post {
+        padding: 16px 18px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.76);
+        border: 1px solid rgba(117, 75, 60, 0.08);
+      }
+
+      .post-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .post-author {
+        font-weight: 700;
+      }
+
+      .post-time {
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .post-content {
+        margin: 0;
+        line-height: 1.8;
+        color: var(--muted);
+        white-space: pre-wrap;
+      }
+
+      @media (max-width: 880px) {
+        .forum-shell { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav-wrap">
+        <a href="index.html" class="brand" aria-label="FemCare home">
+          <img src="photo-logo.jpe" alt="FemCare" class="brand-logo" />
+          <span>FemCare</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Menu do fórum">
+          <a href="index.html">Início</a>
+          <a href="forum.html">Fórum</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="container forum-shell">
+        <aside class="panel auth-panel">
+          <div class="auth-header">
+            <h1>Fórum FemCare</h1>
+            <p class="auth-subtitle">Um espaço para trocar experiências, compartilhar dúvidas e se apoiar.</p>
+          </div>
+
+          <div class="auth-tabs" aria-label="Autenticação">
+            <button type="button" class="auth-tab active" data-tab="login">Login</button>
+            <button type="button" class="auth-tab" data-tab="register">Cadastro</button>
+          </div>
+
+          <form id="login-form" class="auth-form active">
+            <div class="field">
+              <label for="login-email">E-mail</label>
+              <input id="login-email" type="email" name="email" placeholder="seu@email.com" required />
+            </div>
+
+            <div class="field">
+              <label for="login-password">Senha</label>
+              <input id="login-password" type="password" name="password" placeholder="Sua senha" required />
+            </div>
+
+            <button type="submit" class="button primary">Entrar</button>
+          </form>
+
+          <form id="register-form" class="auth-form">
+            <div class="field">
+              <label for="register-name">Nome</label>
+              <input id="register-name" type="text" name="name" placeholder="Como você se chama?" required />
+            </div>
+
+            <div class="field">
+              <label for="register-email">E-mail</label>
+              <input id="register-email" type="email" name="email" placeholder="seu@email.com" required />
+            </div>
+
+            <div class="field">
+              <label for="register-password">Senha</label>
+              <input id="register-password" type="password" name="password" placeholder="Mínimo 6 caracteres" required />
+            </div>
+
+            <button type="submit" class="button primary">Cadastrar</button>
+          </form>
+
+          <div id="auth-status" class="status" aria-live="polite"></div>
+
+          <div id="logout-box" class="auth-form active" style="display:none; margin-top:18px;">
+            <button id="logout-button" type="button" class="button secondary">Sair</button>
+          </div>
+        </aside>
+
+        <section class="panel feed" aria-live="polite">
+          <div class="feed-header">
+            <h2>Comunidade</h2>
+          </div>
+
+          <form id="post-form" class="compose hidden">
+            <textarea id="post-text" placeholder="Escreva uma mensagem para a comunidade..." required></textarea>
+            <button type="submit" class="button primary">Publicar</button>
+          </form>
+
+          <div id="posts" class="posts"></div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const API_BASE_URL = 'http://localhost:3001';
+      const loginForm = document.getElementById('login-form');
+      const registerForm = document.getElementById('register-form');
+      const authTabs = document.querySelectorAll('.auth-tab');
+      const authStatus = document.getElementById('auth-status');
+      const logoutBox = document.getElementById('logout-box');
+      const logoutButton = document.getElementById('logout-button');
+      const postForm = document.getElementById('post-form');
+      const postsContainer = document.getElementById('posts');
+      const postText = document.getElementById('post-text');
+
+      function setStatus(message, type = '') {
+        authStatus.textContent = message;
+        authStatus.className = `status ${type}`.trim();
+      }
+
+      function setAuthTab(name) {
+        authTabs.forEach((tab) => {
+          tab.classList.toggle('active', tab.dataset.tab === name);
+        });
+
+        loginForm.classList.toggle('active', name === 'login');
+        registerForm.classList.toggle('active', name === 'register');
+      }
+
+      async function apiFetch(url, options = {}) {
+        const response = await fetch(`${API_BASE_URL}${url}`, {
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            ...(options.headers || {})
+          },
+          ...options
+        });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Erro ao processar a solicitação.');
+        }
+
+        return data;
+      }
+
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+        return new Intl.DateTimeFormat('pt-BR', {
+          day: '2-digit',
+          month: 'short',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        }).format(date);
+      }
+
+      function renderPosts(posts) {
+        postsContainer.innerHTML = '';
+
+        if (!posts.length) {
+          postsContainer.innerHTML = '<div class="post"><p class="post-content">Ainda não há mensagens. Seja a primeira pessoa a compartilhar uma experiência.</p></div>';
+          return;
+        }
+
+        posts.forEach((post) => {
+          const article = document.createElement('article');
+          article.className = 'post';
+          article.innerHTML = `
+            <div class="post-header">
+              <span class="post-author">${post.author}</span>
+              <span class="post-time">${formatDate(post.createdAt)}</span>
+            </div>
+            <p class="post-content">${post.content}</p>
+          `;
+          postsContainer.appendChild(article);
+        });
+      }
+
+      async function loadPosts() {
+        try {
+          const data = await apiFetch('/api/posts');
+          renderPosts(data.posts || []);
+        } catch (error) {
+          postsContainer.innerHTML = '<div class="post"><p class="post-content">Não foi possível carregar as mensagens no momento.</p></div>';
+        }
+      }
+
+      async function checkSession() {
+        try {
+          const data = await apiFetch('/api/session');
+
+          if (data.loggedIn) {
+            logoutBox.style.display = 'block';
+            postForm.classList.remove('hidden');
+            setStatus(`Bem-vinda, ${data.user.name}!`, 'success');
+            return;
+          }
+
+          postForm.classList.add('hidden');
+          logoutBox.style.display = 'none';
+          setStatus('Faça login para participar da conversa.', '');
+        } catch (error) {
+          setStatus('Não foi possível verificar sua sessão.', 'error');
+        }
+      }
+
+      authTabs.forEach((tab) => {
+        tab.addEventListener('click', () => setAuthTab(tab.dataset.tab));
+      });
+
+      loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(loginForm);
+
+        try {
+          const result = await apiFetch('/api/login', {
+            method: 'POST',
+            body: JSON.stringify({
+              email: formData.get('email'),
+              password: formData.get('password')
+            })
+          });
+
+          setStatus(result.message || 'Login realizado com sucesso!', 'success');
+          loginForm.reset();
+          await checkSession();
+        } catch (error) {
+          setStatus(error.message, 'error');
+        }
+      });
+
+      registerForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(registerForm);
+
+        try {
+          const result = await apiFetch('/api/register', {
+            method: 'POST',
+            body: JSON.stringify({
+              name: formData.get('name'),
+              email: formData.get('email'),
+              password: formData.get('password')
+            })
+          });
+
+          setStatus(result.message || 'Cadastro realizado com sucesso!', 'success');
+          registerForm.reset();
+          await checkSession();
+        } catch (error) {
+          setStatus(error.message, 'error');
+        }
+      });
+
+      logoutButton.addEventListener('click', async () => {
+        try {
+          const result = await apiFetch('/api/logout', { method: 'POST' });
+          setStatus(result.message || 'Logout realizado com sucesso.', 'success');
+          logoutBox.style.display = 'none';
+          postForm.classList.add('hidden');
+          await checkSession();
+        } catch (error) {
+          setStatus(error.message, 'error');
+        }
+      });
+
+      postForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        try {
+          const content = postText.value.trim();
+          if (!content) {
+            setStatus('Escreva algo antes de publicar.', 'error');
+            return;
+          }
+
+          const result = await apiFetch('/api/posts', {
+            method: 'POST',
+            body: JSON.stringify({ content })
+          });
+
+          postText.value = '';
+          setStatus(result.message || 'Mensagem publicada.', 'success');
+          await loadPosts();
+        } catch (error) {
+          setStatus(error.message, 'error');
+        }
+      });
+
+      checkSession();
+      loadPosts();
+    </script>
+  </body>
+</html>

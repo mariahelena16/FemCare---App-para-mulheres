@@ -1,0 +1,48 @@
+<svg width="760" height="520" viewBox="0 0 760 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="760" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF7FB"/>
+      <stop offset="1" stop-color="#FCEAF3"/>
+    </linearGradient>
+    <linearGradient id="uterus" x1="123" y1="167" x2="423" y2="383" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FAD3E5"/>
+      <stop offset="1" stop-color="#E59FC4"/>
+    </linearGradient>
+    <linearGradient id="tube" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F7C7DF"/>
+      <stop offset="1" stop-color="#D979AD"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="760" height="520" fill="url(#bg)"/>
+
+  <g stroke="#8F5D7C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M230 176C270 124 358 120 399 176C435 225 423 308 383 360C350 402 288 406 253 366C213 320 206 229 230 176Z" fill="url(#uterus)" opacity="0.9"/>
+
+    <path d="M216 198C172 182 140 151 131 117C121 82 138 59 170 55C195 51 214 74 225 109C236 146 233 178 216 198Z" fill="#F9D7E7" opacity="0.9"/>
+    <path d="M421 198C464 180 499 150 510 115C521 80 505 56 471 53C443 50 425 76 412 110C400 144 401 177 421 198Z" fill="#F9D7E7" opacity="0.9"/>
+
+    <path d="M248 188C200 155 168 148 142 160C115 172 101 196 104 223C108 257 133 280 180 277C222 274 245 237 248 188Z" fill="url(#tube)" opacity="0.85"/>
+    <path d="M412 188C458 154 494 147 520 160C549 173 563 200 559 226C555 258 527 280 484 277C442 274 418 237 412 188Z" fill="url(#tube)" opacity="0.85"/>
+
+    <path d="M280 356C292 388 305 425 300 455C296 482 263 490 234 476C201 460 188 424 202 392C219 355 253 334 280 356Z" fill="#F7C7DF" opacity="0.9"/>
+    <path d="M410 354C397 388 385 425 389 455C394 483 427 490 455 476C488 460 503 425 487 392C470 355 436 334 410 354Z" fill="#F7C7DF" opacity="0.9"/>
+
+    <path d="M312 410C322 438 340 456 361 458C382 460 401 441 411 412" fill="none" stroke="#B95D8A" stroke-width="7"/>
+    <path d="M326 463C338 482 354 495 370 495C386 495 401 481 413 463" fill="none" stroke="#B95D8A" stroke-width="7"/>
+
+    <circle cx="177" cy="123" r="20" fill="#F7D4E4" stroke="#8F5D7C" stroke-width="2.2"/>
+    <circle cx="482" cy="123" r="20" fill="#F7D4E4" stroke="#8F5D7C" stroke-width="2.2"/>
+    <circle cx="202" cy="183" r="11" fill="#F7D4E4" stroke="#8F5D7C" stroke-width="2.2"/>
+    <circle cx="456" cy="183" r="11" fill="#F7D4E4" stroke="#8F5D7C" stroke-width="2.2"/>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif" fill="#5B3549">
+    <text x="167" y="80" font-size="22" font-weight="700">Ovários</text>
+    <text x="100" y="210" font-size="22" font-weight="700">Trompas</text>
+    <text x="331" y="112" font-size="22" font-weight="700">Útero</text>
+    <text x="132" y="348" font-size="22" font-weight="700">Vagina</text>
+    <text x="420" y="340" font-size="22" font-weight="700">Vulva</text>
+    <text x="222" y="475" font-size="19" font-weight="700">Endométrio</text>
+  </g>
+</svg>

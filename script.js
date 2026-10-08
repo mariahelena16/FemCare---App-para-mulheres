@@ -14,6 +14,7 @@ const userPhase = document.getElementById('user-phase');
 const userInterest = document.getElementById('user-interest');
 const personalizedContentSection = document.getElementById('personalized-content');
 const personalizedTitle = document.getElementById('personalized-title');
+const personalizedTip = document.getElementById('personalized-tip');
 const focusedPoint1 = document.getElementById('focused-point-1');
 const focusedPoint2 = document.getElementById('focused-point-2');
 const focusedPoint3 = document.getElementById('focused-point-3');
@@ -24,6 +25,34 @@ const answers = {
   concern: 'Ciclo menstrual',
   interest: 'Autocuidado'
 };
+
+const phaseAliases = {
+  puberdade: 'puberdade',
+  menstruacao: 'puberdade',
+  menstrucao: 'puberdade',
+  menstruação: 'puberdade',
+  adolescencia: 'adolescencia',
+  adolescência: 'adolescencia',
+  vidaadulta: 'vida-adulta',
+  'vida-adulta': 'vida-adulta',
+  'vida adulta': 'vida-adulta',
+  menopausa: 'menopausa'
+};
+
+function normalizePhaseValue(value) {
+  return String(value || '')
+    .replace(/^#/, '')
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '-');
+}
+
+function resolvePhaseName(value) {
+  const normalized = normalizePhaseValue(value);
+  return phaseAliases[normalized] || normalized;
+}
 
 const personalizedContent = {
   'Puberdade': {
@@ -53,7 +82,7 @@ const personalizedContent = {
 };
 
 function activatePhase(phaseName) {
-  const normalized = phaseName.replace('#', '');
+  const normalized = resolvePhaseName(phaseName);
 
   tabs.forEach((tab) => {
     const isActive = tab.dataset.phase === normalized;
@@ -69,11 +98,19 @@ function activatePhase(phaseName) {
 
 function syncPhaseFromHash() {
   const hash = window.location.hash || '#puberdade';
-  const phaseName = hash.replace('#', '');
+  const phaseName = resolvePhaseName(hash);
   const validPhase = Array.from(tabs).some((tab) => tab.dataset.phase === phaseName);
 
   if (!validPhase) {
     return;
+  }
+
+  if (appShell) {
+    appShell.classList.add('survey-complete');
+  }
+
+  if (onboardingPanel) {
+    onboardingPanel.classList.add('hidden');
   }
 
   activatePhase(phaseName);
@@ -144,6 +181,12 @@ function updatePersonalizedContent() {
 
   if (personalizedTitle) {
     personalizedTitle.textContent = `Cuidado pensado para você nesta fase de ${selectedPhase.toLowerCase()}.`;
+  }
+
+  const personalizedTipText = `Hoje, no seu contexto de ${concernText}, vale priorizar ${phaseContent[1].toLowerCase()}`;
+
+  if (personalizedTip) {
+    personalizedTip.textContent = personalizedTipText;
   }
 
   if (focusedPoint1) {
@@ -259,3 +302,168 @@ faqItems.forEach((item) => {
     }
   });
 });
+
+const calendarContainer = document.getElementById('menstrual-calendar');
+const monthLabel = document.getElementById('calendar-month');
+
+const calendarPhaseConfig = {
+  menstrual: { label: 'Menstr.', className: 'phase-menstrual' },
+  follicular: { label: 'Folicular', className: 'phase-follicular' },
+  ovulation: { label: 'Ovulação', className: 'phase-ovulation' },
+  luteal: { label: 'Lútea', className: 'phase-luteal' }
+};
+
+function getCyclePhase(dayNumber) {
+  const cycleDay = ((dayNumber - 1) % 28) + 1;
+
+  if (cycleDay <= 5) return 'menstrual';
+  if (cycleDay <= 12) return 'follicular';
+  if (cycleDay <= 16) return 'ovulation';
+  return 'luteal';
+}
+
+function renderMenstrualCalendar() {
+  if (!calendarContainer) return;
+
+  const now = new Date();
+  const month = now.toLocaleString('pt-BR', { month: 'long', year: 'numeric' });
+  const monthName = month.charAt(0).toUpperCase() + month.slice(1);
+
+  if (monthLabel) {
+    monthLabel.textContent = monthName;
+  }
+
+  const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  const lastDayOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  const startWeekday = firstDayOfMonth.getDay();
+  const totalDays = lastDayOfMonth.getDate();
+  const totalCells = Math.ceil((startWeekday + totalDays) / 7) * 7;
+
+  calendarContainer.innerHTML = '';
+
+  for (let index = 0; index < totalCells; index += 1) {
+    const dayElement = document.createElement('div');
+    dayElement.className = 'calendar-day';
+
+    const dayNumber = index - startWeekday + 1;
+    if (dayNumber <= 0 || dayNumber > totalDays) {
+      dayElement.classList.add('is-empty');
+      calendarContainer.appendChild(dayElement);
+      continue;
+    }
+
+    const phaseKey = getCyclePhase(dayNumber);
+    const phaseMeta = calendarPhaseConfig[phaseKey];
+    dayElement.classList.add(phaseMeta.className);
+    dayElement.innerHTML = `
+      <span class="day-number">${dayNumber}</span>
+      <span class="phase-pill">${phaseMeta.label}</span>
+    `;
+
+    calendarContainer.appendChild(dayElement);
+  }
+}
+
+renderMenstrualCalendar();
+
+const fabiAssistant = document.getElementById('fabi-assistant');
+const fabiTrigger = document.getElementById('fabi-trigger');
+const fabiForm = document.getElementById('fabi-form');
+const fabiInput = document.getElementById('fabi-input');
+const fabiMessages = document.getElementById('fabi-messages');
+const fabiQuickQuestions = document.querySelectorAll('.fabi-question');
+
+const fabiResponses = [
+  {
+    keywords: ['ciclo', 'irregular', 'menstrual', 'menstrua'],
+    text: 'Um ciclo irregular pode acontecer por várias razões, como estresse, mudanças de peso, sono, exercício, alimentação e hormônios. O mais importante é observar o padrão ao longo do tempo. Se o ciclo estiver muito diferente do seu habitual, com dor forte ou sangramento muito intenso, vale conversar com ginecologista.'
+  },
+  {
+    keywords: ['corrimento', 'amarelo', 'cheiro', 'normal', 'anormal'],
+    text: 'Corrimento claro e sem cheiro forte costuma ser mais normal. Já corrimento amarelo, esverdeado, com cheiro forte ou com coceira/queimação pode indicar alguma alteração e merece atenção. Evite usar produtos perfumados na região íntima e procure avaliação se persistir.'
+  },
+  {
+    keywords: ['ovulacao', 'ovulação', 'dor', 'ovulatorio', 'ovulatório'],
+    text: 'A dor na ovulação, quando acontece, costuma ser unilateral e passageira, como uma pontada ou desconforto abdominal. Também pode haver aumento da sensibilidade, secreção cervical ou leve mudança de humor. Se for intensa ou frequente, vale conversar com uma profissional.'
+  },
+  {
+    keywords: ['menstrua', 'sangramento', 'forte', 'cansada', 'fraca'],
+    text: 'Menstruação muito intensa com cansaço, tontura ou fraqueza pode indicar sangramento mais abundante do que o usual. Se isso estiver acontecendo com frequência, vale avaliar com ginecologista, porque nem sempre é só “muita menstruação”; pode haver perda de ferro ou outras causas.'
+  },
+  {
+    keywords: ['sexo', 'relacao', 'relação', 'período', 'periodo', 'sexo durante'],
+    text: 'Sexo durante o período pode ser uma escolha pessoal e, para muitas pessoas, é totalmente tranquilo. É importante respeitar conforto, lubrificação e higiene. Se há dor, desconforto ou risco de infecção, vale conversar com a pessoa e, se necessário, procurar ajuda profissional.'
+  },
+  {
+    keywords: ['ovulando', 'saber', 'ovulo', 'fertilidade'],
+    text: 'Algumas pessoas percebem mais sensibilidade abdominal, secreção cervical mais clara e elástica, e maior desejo sexual na ovulação. Mas o jeito mais seguro de acompanhar é observar o ciclo ao longo de alguns meses. Se você quiser saber mais sobre fertilidade, um ginecologista pode te orientar com clareza.'
+  },
+  {
+    keywords: ['saude intima', 'higiene', 'intima', 'coceira', 'queimação'],
+    text: 'A saúde íntima costuma melhorar com higiene suave, uso de produtos neutros, evitar perfumados e manter a região bem arejada. Se houver coceira, ardor, odor forte ou desconforto frequente, vale buscar avaliação, porque isso pode ser sinal de irritação ou infecção.'
+  },
+  {
+    keywords: ['fadiga', 'humor', 'peito', 'hormonal', 'hormonio'],
+    text: 'Fadiga, humor variável e sensibilidade no peito podem estar ligados a alterações hormonais, estresse, sono ou até alimentação. Nem sempre é algo perigoso, mas é importante observar se é recorrente e se vem acompanhado de outros sintomas como dor forte, febre ou mudança brusca do ciclo.'
+  },
+  {
+    keywords: ['cuidar', 'dia a dia', 'intima', 'higiene', 'covid'],
+    text: 'No dia a dia, o cuidado com o corpo inclui sono regular, hidratação, alimentação equilibrada, atenção ao ciclo e respeito ao seu limite. Para a saúde íntima, o mais importante é evitar excesso de produtos agressivos e ouvir o que seu corpo está pedindo.'
+  },
+  {
+    keywords: ['ginecologista', 'profissional', 'consulta', 'quando procurar'],
+    text: 'Vale procurar um ginecologista se houver dor intensa, menstruação muito forte, ciclo muito irregular, corrimento incomum, infecções frequentes, dor na relação ou qualquer sintoma que te deixe desconfortável ou insegura. A consulta é um cuidado e não uma “exagero”.'
+  }
+];
+
+function addFabiMessage(text, sender = 'bot') {
+  const message = document.createElement('div');
+  message.className = `fabi-message ${sender}`;
+  message.textContent = text;
+  fabiMessages.appendChild(message);
+  fabiMessages.scrollTop = fabiMessages.scrollHeight;
+}
+
+function getFabiReply(input) {
+  const text = input.toLowerCase();
+  const match = fabiResponses.find((response) => response.keywords.some((keyword) => text.includes(keyword)));
+
+  if (match) {
+    return match.text;
+  }
+
+  return 'Entendi. Isso pode ter várias causas, e a melhor forma de orientar é observar seus sintomas e, se persistirem, conversar com um profissional de saúde. Se quiser, posso te ajudar com perguntas mais específicas sobre ciclo, corrimento, dor, sexo ou saúde íntima.';
+}
+
+if (fabiTrigger) {
+  fabiTrigger.addEventListener('click', () => {
+    const isOpen = fabiAssistant.classList.toggle('is-open');
+    fabiTrigger.setAttribute('aria-expanded', String(isOpen));
+  });
+}
+
+if (fabiQuickQuestions.length) {
+  fabiQuickQuestions.forEach((question) => {
+    question.addEventListener('click', () => {
+      const value = question.textContent.trim();
+      addFabiMessage(value, 'user');
+      addFabiMessage(getFabiReply(value), 'bot');
+    });
+  });
+}
+
+if (fabiForm) {
+  fabiForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const value = fabiInput.value.trim();
+
+    if (!value) {
+      return;
+    }
+
+    addFabiMessage(value, 'user');
+    addFabiMessage(getFabiReply(value), 'bot');
+    fabiForm.reset();
+    fabiInput.focus();
+  });
+}

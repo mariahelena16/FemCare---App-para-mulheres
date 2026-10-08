@@ -1,21 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
 :root {
-  --bg: #f4efec;
-  --bg-strong: #eaded6;
-  --panel: #fffdfb;
-  --panel-alt: #f7efe9;
-  --pink-50: #f7e6dc;
-  --pink-100: #ebc8b7;
-  --pink-300: #d09173;
-  --pink-500: #a95d48;
-  --pink-700: #6f3d34;
-  --rose-500: #b8654e;
-  --purple-500: #7a5348;
-  --lavender: #f0e3dc;
-  --text: #2c1d1a;
-  --muted: #6d4d47;
-  --line: rgba(117, 75, 60, 0.14);
-  --shadow: 0 18px 40px rgba(84, 53, 42, 0.12);
+  --bg: #fff5f8;
+  --bg-strong: #ffeef4;
+  --panel: #fffdfd;
+  --panel-alt: #fff2f6;
+  --pink-50: #ffe9f2;
+  --pink-100: #ffd5e8;
+  --pink-300: #f8b3d1;
+  --pink-500: #e58bb7;
+  --pink-700: #9c5678;
+  --rose-500: #d980a8;
+  --purple-500: #b88ab0;
+  --lavender: #f9ebf7;
+  --text: #4a2d3d;
+  --muted: #785a6a;
+  --line: rgba(156, 86, 120, 0.14);
+  --shadow: 0 18px 40px rgba(160, 106, 143, 0.12);
   --radius: 24px;
+  --font-body: 'Manrope', 'Segoe UI', sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
 }
 
 * {
@@ -28,18 +32,61 @@ html {
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: radial-gradient(circle at top, #fff3f8 0%, #fdf7fb 22%, #f8f3ff 100%);
+  font-family: var(--font-display);
+  background: radial-gradient(circle at top, #fff7fb 0%, #fff2f7 26%, #ffeef7 100%);
   color: var(--text);
+}
+
+p,
+li,
+span,
+input,
+textarea,
+button,
+label,
+a,
+.nav-link,
+.option-btn,
+.meta,
+.small-text,
+.card-copy,
+.faq-answer,
+.timeline-card p,
+.step-card p,
+.feature-card p,
+.form-card p,
+.section-copy,
+.story-text,
+.tip-text,
+.personalized-cta,
+.social-proof,
+.stats-item {
+  font-family: var(--font-display);
+}
+
+h1, h2, h3, h4, h5, h6,
+.brand,
+.logo-text,
+.section-title,
+.question-card h3,
+.onboarding-header h2,
+.banner-inner h3,
+.main-nav a,
+.feature-card h3,
+.timeline-card h3,
+.greeting,
+.form-card h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
 }
 
 .app-shell {
   width: min(1220px, calc(100% - 22px));
   margin: 16px auto 0;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(201, 143, 171, 0.18);
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(222, 180, 202, 0.24);
   border-radius: 34px;
-  box-shadow: 0 24px 60px rgba(150, 95, 129, 0.12);
+  box-shadow: 0 24px 60px rgba(175, 125, 154, 0.12);
   overflow: hidden;
   backdrop-filter: blur(10px);
 }
@@ -63,7 +110,7 @@ button {
   top: 0;
   z-index: 10;
   backdrop-filter: blur(12px);
-  background: rgba(255, 250, 249, 0.7);
+  background: rgba(255, 248, 251, 0.76);
   border-bottom: 1px solid var(--line);
 }
 
@@ -174,10 +221,10 @@ button {
 }
 
 .option-btn.selected {
-  background: linear-gradient(135deg, #7b453b, #a85c4b);
+  background: linear-gradient(135deg, #e58bb7, #d276a8 48%, #b75886);
   color: #fff;
-  border-color: rgba(94, 58, 44, 0.3);
-  box-shadow: 0 12px 24px rgba(123, 69, 59, 0.18);
+  border-color: rgba(136, 79, 111, 0.3);
+  box-shadow: 0 12px 24px rgba(183, 106, 151, 0.18);
 }
 
 .onboarding-actions {
@@ -238,6 +285,23 @@ button {
   font-size: clamp(1.5rem, 2.4vw, 2.2rem);
   letter-spacing: -0.04em;
   line-height: 1.2;
+}
+
+.personalized-tip-box {
+  display: grid;
+  gap: 10px;
+  padding: 18px 18px 16px;
+  margin-bottom: 18px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255, 233, 242, 0.92), rgba(245, 233, 255, 0.92));
+  border: 1px solid rgba(180, 122, 155, 0.12);
+}
+
+.personalized-tip-box p {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.03rem;
+  line-height: 1.7;
 }
 
 .personalized-grid {
@@ -429,13 +493,13 @@ button {
 }
 
 .button.primary {
-  background: linear-gradient(135deg, #b7654d, #8d4b3c 48%, #6b3d34);
+  background: linear-gradient(135deg, #e68bb3, #c46d9a 46%, #a7507e);
   color: white;
-  box-shadow: 0 18px 32px rgba(123, 77, 64, 0.22);
+  box-shadow: 0 18px 32px rgba(188, 112, 154, 0.22);
 }
 
 .button.secondary {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.7);
   border: 1px solid var(--line);
 }
 
@@ -559,6 +623,251 @@ button {
   color: var(--muted);
   line-height: 1.8;
   font-size: 1.02rem;
+}
+
+.cycle-guide {
+  padding: 12px 0 52px;
+}
+
+.cycle-inner {
+  padding: 24px 22px 20px;
+  border-radius: 30px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(247, 234, 238, 0.9));
+  border: 1px solid rgba(180, 122, 155, 0.12);
+  box-shadow: 0 18px 34px rgba(146, 93, 119, 0.07);
+}
+
+.cycle-header {
+  margin-bottom: 22px;
+}
+
+.cycle-header h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+
+.cycle-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.stage-card {
+  display: grid;
+  gap: 10px;
+  padding: 20px 18px 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(117, 75, 60, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.stage-tag {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--pink-50);
+  color: var(--pink-700);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stage-card h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  letter-spacing: -0.04em;
+}
+
+.stage-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.care-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.care-card {
+  padding: 20px 18px 16px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(117, 75, 60, 0.08);
+}
+
+.care-card.accent {
+  background: linear-gradient(135deg, rgba(255, 228, 233, 0.8), rgba(245, 233, 255, 0.9));
+}
+
+.care-card h3 {
+  margin: 0 0 12px;
+  font-size: 1.4rem;
+  letter-spacing: -0.04em;
+}
+
+.care-card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.professional-tip {
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.harassment-section {
+  padding: 10px 0 52px;
+}
+
+.harassment-inner {
+  padding: 24px 22px 20px;
+  border-radius: 30px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(250, 240, 245, 0.96));
+  border: 1px solid rgba(180, 122, 155, 0.12);
+  box-shadow: 0 18px 34px rgba(146, 93, 119, 0.07);
+}
+
+.harassment-header {
+  margin-bottom: 16px;
+}
+
+.harassment-header h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+}
+
+.harassment-intro {
+  margin-bottom: 20px;
+}
+
+.harassment-intro p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 1.03rem;
+}
+
+.harassment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.harassment-card {
+  padding: 20px 18px 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(117, 75, 60, 0.08);
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.harassment-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.35rem;
+  letter-spacing: -0.04em;
+}
+
+.harassment-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.reproductive-system {
+  padding: 10px 0 52px;
+}
+
+.system-inner {
+  padding: 24px 22px 20px;
+  border-radius: 30px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(250, 235, 245, 0.95));
+  border: 1px solid rgba(180, 122, 155, 0.12);
+  box-shadow: 0 18px 34px rgba(146, 93, 119, 0.07);
+}
+
+.system-header {
+  margin-bottom: 20px;
+}
+
+.system-header h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+
+.system-illustration {
+  margin: 0 0 20px;
+  padding: 18px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(249, 233, 242, 0.96));
+  border: 1px solid rgba(180, 122, 155, 0.12);
+}
+
+.system-illustration img {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.7);
+}
+
+.system-illustration figcaption {
+  margin-top: 12px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.system-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.system-card {
+  padding: 20px 18px 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(117, 75, 60, 0.08);
+}
+
+.system-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink-50), var(--lavender));
+  color: var(--pink-700);
+  font-weight: 700;
+}
+
+.system-card h3 {
+  margin: 12px 0 8px;
+  font-size: 1.35rem;
+  letter-spacing: -0.04em;
+}
+
+.system-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
 .phases-section {
@@ -769,6 +1078,383 @@ button {
   margin: 0;
   color: var(--muted);
   line-height: 1.7;
+}
+
+.menstrual-calendar-section {
+  padding: 14px 0 52px;
+}
+
+.calendar-shell {
+  padding: 24px 22px 20px;
+  border-radius: 30px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(251,236,244,0.96));
+  border: 1px solid rgba(180, 122, 155, 0.12);
+  box-shadow: 0 18px 40px rgba(146, 93, 119, 0.08);
+}
+
+.calendar-header {
+  margin-bottom: 22px;
+}
+
+.calendar-header h2 {
+  margin: 0;
+  max-width: 780px;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 0.95fr;
+  gap: 22px;
+}
+
+.calendar-panel {
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(180, 122, 155, 0.12);
+}
+
+.calendar-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.calendar-label {
+  margin: 0 0 2px;
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.calendar-topbar h3 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  letter-spacing: -0.04em;
+}
+
+.calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.calendar-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-dot.menstrual { background: #d97ba5; }
+.legend-dot.follicular { background: #f8c7d8; }
+.legend-dot.ovulation { background: #c9b7ff; }
+.legend-dot.luteal { background: #f4d39c; }
+
+.calendar-weekdays,
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.calendar-weekdays {
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.calendar-days {
+  min-height: 240px;
+}
+
+.calendar-day {
+  min-height: 58px;
+  border-radius: 14px;
+  border: 1px solid rgba(117, 75, 60, 0.08);
+  background: rgba(255,255,255,0.75);
+  padding: 8px 6px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 4px;
+  color: var(--text);
+}
+
+.calendar-day.is-empty {
+  opacity: 0.35;
+  background: rgba(245, 237, 240, 0.45);
+}
+
+.calendar-day .day-number {
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.calendar-day .phase-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 0.62rem;
+  line-height: 1.2;
+  padding: 2px 4px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.calendar-day.phase-menstrual {
+  background: linear-gradient(180deg, rgba(254, 234, 242, 0.96), rgba(248, 218, 232, 0.82));
+}
+
+.calendar-day.phase-menstrual .phase-pill { background: rgba(217, 123, 165, 0.2); color: #8d4969; }
+
+.calendar-day.phase-follicular {
+  background: linear-gradient(180deg, rgba(255,245,249,0.98), rgba(252, 236, 243, 0.84));
+}
+
+.calendar-day.phase-follicular .phase-pill { background: rgba(248, 199, 216, 0.42); color: #7d4f62; }
+
+.calendar-day.phase-ovulation {
+  background: linear-gradient(180deg, rgba(245, 239, 255, 0.98), rgba(228, 220, 255, 0.82));
+}
+
+.calendar-day.phase-ovulation .phase-pill { background: rgba(201, 183, 255, 0.38); color: #5d4f88; }
+
+.calendar-day.phase-luteal {
+  background: linear-gradient(180deg, rgba(255, 246, 229, 0.98), rgba(245, 220, 180, 0.8));
+}
+
+.calendar-day.phase-luteal .phase-pill { background: rgba(244, 211, 156, 0.38); color: #8d6831; }
+
+.calendar-insights {
+  display: grid;
+  gap: 14px;
+}
+
+.insight-card {
+  padding: 18px 16px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(180, 122, 155, 0.12);
+  background: rgba(255,255,255,0.76);
+}
+
+.insight-card h3 {
+  margin: 10px 0 8px;
+  font-size: 1.4rem;
+  letter-spacing: -0.04em;
+}
+
+.insight-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.insight-tag {
+  display: inline-block;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: var(--pink-50);
+  color: var(--pink-700);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.fabi-assistant {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 40;
+}
+
+.fabi-trigger {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f9d6e8, #f2b9d3 52%, #e5a6ca);
+  color: var(--text);
+  box-shadow: 0 18px 38px rgba(188, 118, 155, 0.22);
+  padding: 10px 16px 10px 10px;
+  cursor: pointer;
+}
+
+.fabi-trigger-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+}
+
+.fabi-trigger-copy strong {
+  font-size: 1.05rem;
+}
+
+.fabi-trigger-copy small {
+  font-size: 0.72rem;
+  opacity: 0.8;
+}
+
+.fabi-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(156, 86, 120, 0.12);
+}
+
+.fabi-avatar svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.fabi-avatar.large {
+  width: 50px;
+  height: 50px;
+}
+
+.fabi-panel {
+  display: none;
+  width: min(360px, calc(100vw - 28px));
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(180, 122, 155, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 24px 50px rgba(160, 106, 143, 0.18);
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.fabi-assistant.is-open .fabi-panel {
+  display: block;
+}
+
+.fabi-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.fabi-header strong {
+  display: block;
+  font-size: 1.1rem;
+}
+
+.fabi-header small {
+  color: var(--muted);
+}
+
+.fabi-messages {
+  display: grid;
+  gap: 10px;
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 4px;
+  margin-bottom: 12px;
+}
+
+.fabi-message {
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.fabi-message.bot {
+  background: #fff2f8;
+  color: var(--text);
+  border: 1px solid rgba(180, 122, 155, 0.1);
+}
+
+.fabi-message.user {
+  background: linear-gradient(135deg, #f7d9e8, #efd7f5);
+  color: var(--text);
+  margin-left: 24px;
+}
+
+.fabi-questions {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.fabi-question {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 1px solid rgba(180, 122, 155, 0.12);
+  background: var(--panel-alt);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 9px 10px;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.fabi-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+.fabi-form input {
+  border: 1px solid rgba(156, 86, 120, 0.15);
+  border-radius: 12px;
+  padding: 11px 12px;
+  background: #fff;
+  color: var(--text);
+}
+
+.fabi-form button {
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e58bb7, #c96c9f);
+  color: #fff;
+  padding: 0 14px;
+  cursor: pointer;
+  font-weight: 700;
 }
 
 .faq-section {

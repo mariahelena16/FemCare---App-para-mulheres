@@ -18,6 +18,10 @@
           <span class="brand-name">FemCare</span>
         </a>
         <nav class="main-nav" aria-label="Navegação principal">
+          <a href="#ciclo-menstrual">Ciclo menstrual</a>
+          <a href="#sistema-reprodutor">Sistema reprodutor</a>
+          <a href="#assedio">Assédio</a>
+          <a href="forum.html">Fórum</a>
           <a href="#puberdade">Puberdade</a>
           <a href="#adolescencia">Adolescência</a>
           <a href="#vida-adulta">Vida adulta</a>
@@ -31,7 +35,7 @@
         <div class="onboarding-content">
           <div class="onboarding-header">
             <p class="eyebrow">Bem-vindo(a)</p>
-            <h2>Vamos te orientar com calma e acolhimento. Responda 3 perguntas rápidas.</h2>
+            <h2>Vamos te conhecer melhor!</h2>
           </div>
 
           <div class="question-card active" data-question="0">
@@ -90,6 +94,11 @@
             <p class="eyebrow">Conteúdo para você</p>
             <h3 id="personalized-title">Ajustes essenciais para a sua fase atual.</h3>
           </div>
+          <div class="personalized-tip-box">
+            <span class="card-badge">Dica do dia</span>
+            <p id="personalized-tip">Pequenos cuidados fazem grande diferença no seu bem-estar.</p>
+          </div>
+
           <div class="personalized-grid">
             <article class="personalized-card">
               <span class="card-badge">O que observar</span>
@@ -154,6 +163,234 @@
             Conhecer essas mudanças ajuda a reconhecer sinais do corpo, fortalecer
             a saúde e tomar decisões mais conscientes sobre autocuidado.
           </p>
+        </div>
+      </section>
+
+      <section id="ciclo-menstrual" class="cycle-guide">
+        <div class="container cycle-inner">
+          <div class="cycle-header">
+            <p class="eyebrow">Ciclo menstrual</p>
+            <h2>As quatro fases do ciclo e como viver melhor o período.</h2>
+          </div>
+
+          <div class="cycle-grid">
+            <article class="stage-card">
+              <span class="stage-tag">1. Menstruação</span>
+              <h3>Queda de sangue e renovação</h3>
+              <p>
+                A menstruação acontece quando o endométrio, que se preparou para
+                receber um embrião, é eliminado. É o momento de descanso, hidratação
+                e atenção ao corpo.
+              </p>
+            </article>
+
+            <article class="stage-card">
+              <span class="stage-tag">2. Fase folicular</span>
+              <h3>O corpo se prepara para ovular</h3>
+              <p>
+                Os hormônios estimulam o crescimento de folículos e o corpo ganha mais
+                energia, disposição e clareza. A pele e o humor costumam ficar mais estáveis.
+              </p>
+            </article>
+
+            <article class="stage-card">
+              <span class="stage-tag">3. Ovulação</span>
+              <h3>Máxima fertilidade e sensação de energia</h3>
+              <p>
+                O ovócito é liberado e muitas pessoas percebem mais libido, disposição
+                e foco. Esse momento costuma ser mais intenso e corporalmente perceptível.
+              </p>
+            </article>
+
+            <article class="stage-card">
+              <span class="stage-tag">4. Fase lútea</span>
+              <h3>Respiração, acolhimento e ajuste</h3>
+              <p>
+                Após a ovulação, o corpo tende a exigir mais descanso. É comum a sensação
+                de cansaço, humor mais instável ou pressão abdominal antes da menstruação.
+              </p>
+            </article>
+          </div>
+
+          <div class="care-layout">
+            <div class="care-card">
+              <h3>Como lidar com o período</h3>
+              <ul>
+                <li>Use absorventes, copos menstruais ou calcinha menstrual conforme sua rotina e conforto.</li>
+                <li>Hidrate-se e mantenha uma alimentação leve, com frutas, legumes e fontes de ferro.</li>
+                <li>Evite excesso de esforço e priorize descanso, massagens e aquecimento quando sentir desconforto.</li>
+                <li>Procure atividades leves como caminhada, alongamento e respiração para aliviar tensão.</li>
+              </ul>
+            </div>
+
+            <div class="care-card accent">
+              <h3>Quando buscar ajuda</h3>
+              <ul>
+                <li>Se houver dor forte que não melhora com repouso ou remédios simples.</li>
+                <li>Se o fluxo for muito intenso, com sangramento prolongado ou desmaios.</li>
+                <li>Se você tiver sintomas como febre, vômitos, tontura persistente ou muita fraqueza.</li>
+                <li>Se o ciclo estiver muito irregular ou o desconforto estiver afetando sua rotina.</li>
+              </ul>
+              <p class="professional-tip">
+                O profissional ideal depende do que você sente: ginecologista é o mais indicado para ciclo, dor menstrual, sangramento e saúde reprodutiva; endocrinologista ou clínico ajuda quando há alterações hormonais; dermatologista é o caminho para acne e pele; psicóloga ou psiquiatra podem ajudar com ansiedade, humor e pressão emocional; e o clínico geral também é bom para orientar primeiros passos e encaminhamentos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="calendario-menstrual" class="menstrual-calendar-section">
+        <div class="container calendar-shell">
+          <div class="calendar-header">
+            <p class="eyebrow">Calendário menstrual</p>
+            <h2>Entenda seu ciclo em 28 dias e como cada fase pode influenciar humor, energia e conexão com o corpo.</h2>
+          </div>
+
+          <div class="calendar-grid">
+            <div class="calendar-panel">
+              <div class="calendar-topbar">
+                <div>
+                  <p class="calendar-label">Mês atual</p>
+                  <h3 id="calendar-month">Mês</h3>
+                </div>
+                <div class="calendar-legend" aria-label="Legenda do calendário menstrual">
+                  <span><i class="legend-dot menstrual"></i> Menstruação</span>
+                  <span><i class="legend-dot follicular"></i> Folicular</span>
+                  <span><i class="legend-dot ovulation"></i> Ovulação</span>
+                  <span><i class="legend-dot luteal"></i> Lútea</span>
+                </div>
+              </div>
+              <div class="calendar-weekdays">
+                <span>Dom</span>
+                <span>Seg</span>
+                <span>Ter</span>
+                <span>Qua</span>
+                <span>Qui</span>
+                <span>Sex</span>
+                <span>Sáb</span>
+              </div>
+              <div id="menstrual-calendar" class="calendar-days" aria-live="polite"></div>
+            </div>
+
+            <div class="calendar-insights">
+              <article class="insight-card active">
+                <span class="insight-tag">Menstruação</span>
+                <h3>Descanso e acolhimento</h3>
+                <p>É o momento de dar mais atenção ao corpo: hidratação, repouso, calor e autocuidado ajudam bastante. O desejo sexual pode diminuir, e isso é normal.</p>
+              </article>
+
+              <article class="insight-card">
+                <span class="insight-tag">Fase folicular</span>
+                <h3>Energia e clareza</h3>
+                <p>Você tende a sentir mais disposição, foco e vontade de se mover. É uma fase boa para começar projetos e se conectar com seu corpo.</p>
+              </article>
+
+              <article class="insight-card">
+                <span class="insight-tag">Ovulação</span>
+                <h3>Mais sensibilidade e libido</h3>
+                <p>Esse momento pode aumentar a vontade sexual, a energia e a ligação com a própria sensualidade. Também é o período mais fértil do ciclo.</p>
+              </article>
+
+              <article class="insight-card">
+                <span class="insight-tag">Fase lútea</span>
+                <h3>Harmonia e atenção</h3>
+                <p>O corpo pode pedir mais descanso e o humor pode mudar mais facilmente. Nessa fase, relação com prazer, sono e autocuidado passa a ganhar ainda mais importância.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sistema-reprodutor" class="reproductive-system">
+        <div class="container system-inner">
+          <div class="system-header">
+            <p class="eyebrow">Sistema reprodutor feminino</p>
+            <h2>Conheça as principais partes do corpo e como cada uma contribui para a reprodução.</h2>
+          </div>
+
+          <figure class="system-illustration">
+            <img src="sistema-reprodutor-feminino.svg" alt="Ilustração do sistema reprodutor feminino com ovários, trompas de Falópio, útero, vagina e vulva." />
+            <figcaption>Esquema visual das estruturas do sistema reprodutor feminino.</figcaption>
+          </figure>
+
+          <div class="system-grid">
+            <article class="system-card">
+              <span class="system-tag">1</span>
+              <h3>Ovários</h3>
+              <p>Produzem os óvulos e liberam hormônios como estrogênio e progesterona.</p>
+            </article>
+
+            <article class="system-card">
+              <span class="system-tag">2</span>
+              <h3>Trompas de Falópio</h3>
+              <p>São os canais por onde o óvulo desloca-se em direção ao útero após a ovulação.</p>
+            </article>
+
+            <article class="system-card">
+              <span class="system-tag">3</span>
+              <h3>Útero</h3>
+              <p>É o órgão onde o embrião pode se implantar e onde o endométrio se prepara a cada ciclo.</p>
+            </article>
+
+            <article class="system-card">
+              <span class="system-tag">4</span>
+              <h3>Endométrio</h3>
+              <p>Revestimento interno do útero que se espessa para receber uma gestação e é eliminado na menstruação.</p>
+            </article>
+
+            <article class="system-card">
+              <span class="system-tag">5</span>
+              <h3>Vagina</h3>
+              <p>Canal muscular que conecta o útero ao exterior e também é importante na reprodução.</p>
+            </article>
+
+            <article class="system-card">
+              <span class="system-tag">6</span>
+              <h3>Vulva</h3>
+              <p>Conjunto de estruturas externas, incluindo lábios e clitóris, que protegem e sensorialmente acompanham a resposta sexual.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="assedio" class="harassment-section">
+        <div class="container harassment-inner">
+          <div class="harassment-header">
+            <p class="eyebrow">Segurança e acolhimento</p>
+            <h2>Assédio também faz parte da conversa sobre saúde e bem-estar.</h2>
+          </div>
+
+          <div class="harassment-intro">
+            <p>
+              Muitas pessoas passam por situações que parecem pequenas, mas deixam um peso grande no corpo e na mente.
+              Assédio pode acontecer em ambientes cotidianos, em conversas, em redes sociais, em locais públicos ou em relações próximas.
+              Você não precisa minimizá-lo para “ser educada” ou “não criar problema”. O que você sente importa.
+            </p>
+          </div>
+
+          <div class="harassment-grid">
+            <article class="harassment-card">
+              <h3>O que é assédio?</h3>
+              <p>
+                É qualquer comportamento repetido, invasivo ou desconfortável que te faz sentir pressionada, exposta ou sem liberdade para dizer não.
+                Nem sempre é físico: também pode ser verbal, gestual, digital ou emocional.
+              </p>
+            </article>
+
+            <article class="harassment-card">
+              <h3>Como reconhecer?</h3>
+              <p>
+                Sinais como tensão no corpo, vergonha, medo, vontade de sair correndo, desconforto ao receber mensagens ou comentários, e sensação de que sua segurança foi afetada.
+              </p>
+            </article>
+
+            <article class="harassment-card">
+              <h3>O que fazer?</h3>
+              <p>
+                Se afaste, registre, guarde provas, fale com alguém de confiança e procure apoio. Você pode dizer “não” claramente, bloquear e pedir ajuda em ambientes seguros.
+              </p>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -374,11 +611,11 @@
         <div class="container faq-list" aria-label="Perguntas frequentes sobre saúde feminina">
           <article class="faq-item active">
             <button class="faq-question" type="button">
-              <span>Como saber se o ciclo menstrual está normal?</span>
+              <span>Como saber se meu ciclo menstrual está normal?</span>
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-answer">
-              <p>Nem todas as pessoas têm ciclos iguais. O mais importante é observar o padrão ao longo do tempo e buscar ajuda se houver dor intensa, sangramento muito abundante, irregularidade muito grande ou sintomas que atrapalhem a rotina.</p>
+              <p>Nem todas as pessoas têm ciclos iguais. O mais importante é observar seu padrão ao longo do tempo e prestar atenção em como você se sente. Se houver dor intensa, sangramento muito forte, irregularidade muito grande ou sintomas que atrapalhem sua rotina, vale conversar com uma profissional de saúde.</p>
             </div>
           </article>
 
@@ -388,7 +625,7 @@
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-answer">
-              <p>Sim, é muito comum. A acne na adolescência costuma estar relacionada a mudanças hormonais e à oleosidade da pele. Cuidados com limpeza, hidratação e consulta dermatológica ajudam bastante.</p>
+              <p>Sim, é muito comum. A acne na adolescência costuma estar ligada a mudanças hormonais, oleosidade e rotina de pele. Mas isso não significa que você precisa aceitar qualquer desconforto. Cuidados simples de higiene, hidratação e acompanhamento dermatológico podem fazer muita diferença.</p>
             </div>
           </article>
 
@@ -398,13 +635,98 @@
               <span class="faq-icon">+</span>
             </button>
             <div class="faq-answer">
-              <p>Há redução dos hormônios, especialmente o estrogênio, o que pode causar ondas de calor, alterações de sono, mudanças de humor e maior atenção à saúde óssea e cardiovascular.</p>
+              <p>Há redução dos hormônios, especialmente o estrogênio, e isso pode causar ondas de calor, alterações no sono, humor mais instável e mudanças na saúde óssea e cardiovascular. A boa notícia é que há cuidado, informação e apoio para viver essa fase com mais conforto.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              <span>O que é assédio e como ele pode aparecer no cotidiano?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Assédio pode ser verbal, físico, digital ou emocional. Pode acontecer em comentários que te deixam constrangida, mensagens repetidas, contato invasivo ou situações em que alguém ignora seu “não”. Ele costuma deixar sensação de medo, desconforto, culpa ou insegurança.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              <span>Se eu sentir que fui assediada, o que posso fazer?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Você pode se afastar, se proteger, guardar provas, bloquear a pessoa e falar com alguém de confiança. Se a situação for intensa ou recorrente, vale procurar apoio em redes de acolhimento, familiares, amigas, profissionais da saúde, psicologia ou serviços especializados. Você não precisa lidar sozinha com isso.</p>
             </div>
           </article>
         </div>
       </section>
     </main>
     </div>
+
+    <aside class="fabi-assistant" id="fabi-assistant" aria-live="polite">
+      <button class="fabi-trigger" id="fabi-trigger" type="button" aria-expanded="false" aria-controls="fabi-panel">
+        <span class="fabi-avatar" aria-hidden="true">
+          <svg viewBox="0 0 120 120" role="img" aria-label="Avatar da Fabi">
+            <circle cx="60" cy="60" r="55" fill="#f9dfe8" />
+            <path d="M26 78c8-21 24-32 34-32 16 0 31 12 35 32v11H26V78Z" fill="#d48ab1"/>
+            <circle cx="60" cy="52" r="26" fill="#f6d0b8"/>
+            <path d="M37 44c5-16 19-24 36-24 16 0 27 8 32 24-6-6-16-10-29-10-13 0-22 4-39 10Z" fill="#b86c98"/>
+            <circle cx="50" cy="53" r="3" fill="#4a2d3d"/>
+            <circle cx="71" cy="53" r="3" fill="#4a2d3d"/>
+            <path d="M52 67c5 5 11 5 16 0" stroke="#4a2d3d" stroke-width="3" stroke-linecap="round" fill="none"/>
+          </svg>
+        </span>
+        <span class="fabi-trigger-copy">
+          <strong>Fabi</strong>
+          <small>Assistente virtual</small>
+        </span>
+      </button>
+
+      <div class="fabi-panel" id="fabi-panel">
+        <div class="fabi-header">
+          <div class="fabi-avatar large" aria-hidden="true">
+            <svg viewBox="0 0 120 120" role="img" aria-label="Avatar da Fabi">
+              <circle cx="60" cy="60" r="55" fill="#f9dfe8" />
+              <path d="M26 78c8-21 24-32 34-32 16 0 31 12 35 32v11H26V78Z" fill="#d48ab1"/>
+              <circle cx="60" cy="52" r="26" fill="#f6d0b8"/>
+              <path d="M37 44c5-16 19-24 36-24 16 0 27 8 32 24-6-6-16-10-29-10-13 0-22 4-39 10Z" fill="#b86c98"/>
+              <circle cx="50" cy="53" r="3" fill="#4a2d3d"/>
+              <circle cx="71" cy="53" r="3" fill="#4a2d3d"/>
+              <path d="M52 67c5 5 11 5 16 0" stroke="#4a2d3d" stroke-width="3" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Fabi</strong>
+            <small>orientação acolhedora</small>
+          </div>
+        </div>
+
+        <div class="fabi-messages" id="fabi-messages">
+          <div class="fabi-message bot">
+            Olá! Sou a Fabi, sua assistente FemCare. Posso te ajudar com ciclo, corrimento, sexo, saúde íntima e dúvidas do dia a dia. Escolha uma pergunta ou me diga o que você está sentindo.
+          </div>
+        </div>
+
+        <div class="fabi-questions" id="fabi-questions" aria-label="Perguntas recomendadas para a Fabi">
+          <button type="button" class="fabi-question">Meu ciclo está irregular?</button>
+          <button type="button" class="fabi-question">Qual a diferença entre corrimento normal e anormal?</button>
+          <button type="button" class="fabi-question">O que pode causar dor na ovulação?</button>
+          <button type="button" class="fabi-question">Minha menstruação está muito forte e estou cansada?</button>
+          <button type="button" class="fabi-question">Posso ter relação sexual durante o período?</button>
+          <button type="button" class="fabi-question">Como saber se estou ovulando?</button>
+          <button type="button" class="fabi-question">Tenho corrimento amarelo e cheiro forte?</button>
+          <button type="button" class="fabi-question">Fadiga, humor instável e dor no peito podem ser hormonais?</button>
+          <button type="button" class="fabi-question">Como cuidar da saúde íntima no dia a dia?</button>
+          <button type="button" class="fabi-question">Quando devo procurar um ginecologista?</button>
+        </div>
+
+        <form class="fabi-form" id="fabi-form">
+          <label class="sr-only" for="fabi-input">Mensagem para a Fabi</label>
+          <input id="fabi-input" type="text" placeholder="Escreva sua dúvida..." maxlength="220" />
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+    </aside>
 
     <footer class="site-footer">
       <div class="container footer-inner">
