@@ -1117,6 +1117,35 @@ button {
   border: 1px solid rgba(180, 122, 155, 0.12);
 }
 
+.calendar-settings {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.calendar-settings label {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.calendar-settings input {
+  border: 1px solid rgba(156, 86, 120, 0.15);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: #fff;
+  color: var(--text);
+}
+
+.button.compact {
+  align-self: end;
+  min-height: 42px;
+  padding: 0 18px;
+}
+
 .calendar-topbar {
   display: flex;
   align-items: center;

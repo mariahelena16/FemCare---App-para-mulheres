@@ -248,6 +248,18 @@
 
           <div class="calendar-grid">
             <div class="calendar-panel">
+              <div class="calendar-settings" aria-label="Configuração do ciclo menstrual">
+                <label>
+                  <span>Última menstruação</span>
+                  <input id="last-period-date" type="date" />
+                </label>
+                <label>
+                  <span>Duração do ciclo</span>
+                  <input id="cycle-length" type="number" min="21" max="35" step="1" value="28" />
+                </label>
+                <button type="button" id="update-calendar" class="button primary compact">Atualizar</button>
+              </div>
+
               <div class="calendar-topbar">
                 <div>
                   <p class="calendar-label">Mês atual</p>

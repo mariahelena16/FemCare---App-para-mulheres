@@ -305,7 +305,11 @@ faqItems.forEach((item) => {
 
 const calendarContainer = document.getElementById('menstrual-calendar');
 const monthLabel = document.getElementById('calendar-month');
+const lastPeriodInput = document.getElementById('last-period-date');
+const cycleLengthInput = document.getElementById('cycle-length');
+const updateCalendarButton = document.getElementById('update-calendar');
 
+const CALENDAR_STORAGE_KEY = 'femcare-menstrual-settings';
 const calendarPhaseConfig = {
   menstrual: { label: 'Menstr.', className: 'phase-menstrual' },
   follicular: { label: 'Folicular', className: 'phase-follicular' },
@@ -313,8 +317,53 @@ const calendarPhaseConfig = {
   luteal: { label: 'Lútea', className: 'phase-luteal' }
 };
 
-function getCyclePhase(dayNumber) {
-  const cycleDay = ((dayNumber - 1) % 28) + 1;
+function getDefaultCycleSettings() {
+  const defaultDate = new Date();
+  defaultDate.setDate(defaultDate.getDate() - 19);
+  return {
+    lastPeriodDate: defaultDate.toISOString().slice(0, 10),
+    cycleLength: 28
+  };
+}
+
+function loadCycleSettings() {
+  const defaults = getDefaultCycleSettings();
+  try {
+    const rawValue = localStorage.getItem(CALENDAR_STORAGE_KEY);
+    if (!rawValue) {
+      return defaults;
+    }
+
+    const parsed = JSON.parse(rawValue);
+    return {
+      lastPeriodDate: parsed.lastPeriodDate || defaults.lastPeriodDate,
+      cycleLength: Number(parsed.cycleLength) || defaults.cycleLength
+    };
+  } catch (error) {
+    return defaults;
+  }
+}
+
+function saveCycleSettings(settings) {
+  localStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(settings));
+}
+
+function getCyclePhaseForDate(dateValue, cycleLength) {
+  const cycleStart = new Date(dateValue);
+  const diffMs = new Date(dateValue).getTime() - cycleStart.getTime();
+  const cycleDay = ((Math.floor(diffMs / 86400000) % cycleLength) + cycleLength) % cycleLength + 1;
+
+  if (cycleDay <= 5) return 'menstrual';
+  if (cycleDay <= 12) return 'follicular';
+  if (cycleDay <= 16) return 'ovulation';
+  return 'luteal';
+}
+
+function getCyclePhaseForMonthDay(dayNumber, monthDate, settings) {
+  const cycleStart = new Date(settings.lastPeriodDate);
+  const date = new Date(monthDate.getFullYear(), monthDate.getMonth(), dayNumber);
+  const diffDays = Math.floor((date.getTime() - cycleStart.getTime()) / 86400000);
+  const cycleDay = ((diffDays % settings.cycleLength) + settings.cycleLength) % settings.cycleLength + 1;
 
   if (cycleDay <= 5) return 'menstrual';
   if (cycleDay <= 12) return 'follicular';
@@ -324,6 +373,16 @@ function getCyclePhase(dayNumber) {
 
 function renderMenstrualCalendar() {
   if (!calendarContainer) return;
+
+  const settings = loadCycleSettings();
+
+  if (lastPeriodInput) {
+    lastPeriodInput.value = settings.lastPeriodDate;
+  }
+
+  if (cycleLengthInput) {
+    cycleLengthInput.value = String(settings.cycleLength);
+  }
 
   const now = new Date();
   const month = now.toLocaleString('pt-BR', { month: 'long', year: 'numeric' });
@@ -352,7 +411,7 @@ function renderMenstrualCalendar() {
       continue;
     }
 
-    const phaseKey = getCyclePhase(dayNumber);
+    const phaseKey = getCyclePhaseForMonthDay(dayNumber, firstDayOfMonth, settings);
     const phaseMeta = calendarPhaseConfig[phaseKey];
     dayElement.classList.add(phaseMeta.className);
     dayElement.innerHTML = `
@@ -362,6 +421,36 @@ function renderMenstrualCalendar() {
 
     calendarContainer.appendChild(dayElement);
   }
+}
+
+function handleCalendarUpdate() {
+  const nextSettings = {
+    lastPeriodDate: lastPeriodInput?.value || getDefaultCycleSettings().lastPeriodDate,
+    cycleLength: Number(cycleLengthInput?.value || 28)
+  };
+
+  if (nextSettings.cycleLength < 21) {
+    nextSettings.cycleLength = 21;
+  }
+
+  if (nextSettings.cycleLength > 35) {
+    nextSettings.cycleLength = 35;
+  }
+
+  saveCycleSettings(nextSettings);
+  renderMenstrualCalendar();
+}
+
+if (updateCalendarButton) {
+  updateCalendarButton.addEventListener('click', handleCalendarUpdate);
+}
+
+if (lastPeriodInput) {
+  lastPeriodInput.addEventListener('change', handleCalendarUpdate);
+}
+
+if (cycleLengthInput) {
+  cycleLengthInput.addEventListener('change', handleCalendarUpdate);
 }
 
 renderMenstrualCalendar();
