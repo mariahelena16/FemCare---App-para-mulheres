@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="FemCare: plataforma educativa sobre saúde feminina em cada fase da vida."
+    />
+    <title>FemCare | Saúde feminina em cada fase</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav-wrap">
+        <a href="#inicio" class="brand" aria-label="FemCare home">
+          <img src="photo-logo.jpe" alt="FemCare" class="brand-logo" />
+          <span class="brand-name">FemCare</span>
+        </a>
+        <nav class="main-nav" aria-label="Navegação principal">
+          <a href="#puberdade">Puberdade</a>
+          <a href="#adolescencia">Adolescência</a>
+          <a href="#vida-adulta">Vida adulta</a>
+          <a href="#menopausa">Menopausa</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="app-shell">
+      <section class="onboarding-panel" id="onboarding">
+        <div class="onboarding-content">
+          <div class="onboarding-header">
+            <p class="eyebrow">Bem-vindo(a)</p>
+            <h2>Vamos te orientar com calma e acolhimento. Responda 3 perguntas rápidas.</h2>
+          </div>
+
+          <div class="question-card active" data-question="0">
+            <p class="question-label">1 / 3</p>
+            <h3>Qual fase da vida você está vivendo agora?</h3>
+            <div class="options" role="listbox" aria-label="Fase da vida">
+              <button class="option-btn" type="button" data-value="Puberdade">Puberdade</button>
+              <button class="option-btn" type="button" data-value="Adolescência">Adolescência</button>
+              <button class="option-btn" type="button" data-value="Vida adulta">Vida adulta</button>
+              <button class="option-btn" type="button" data-value="Menopausa">Menopausa</button>
+            </div>
+          </div>
+
+          <div class="question-card" data-question="1">
+            <p class="question-label">2 / 3</p>
+            <h3>Qual mudança mais te preocupa no momento?</h3>
+            <div class="options" role="listbox" aria-label="Mudança mais preocupante">
+              <button class="option-btn" type="button" data-value="Ciclo menstrual">Ciclo menstrual</button>
+              <button class="option-btn" type="button" data-value="Acne e pele">Acne e pele</button>
+              <button class="option-btn" type="button" data-value="Sono e energia">Sono e energia</button>
+              <button class="option-btn" type="button" data-value="Hormônios e humor">Hormônios e humor</button>
+            </div>
+          </div>
+
+          <div class="question-card" data-question="2">
+            <p class="question-label">3 / 3</p>
+            <h3>O que mais você quer aprender hoje?</h3>
+            <div class="options" role="listbox" aria-label="Área de aprendizado">
+              <button class="option-btn" type="button" data-value="Autocuidado">Autocuidado</button>
+              <button class="option-btn" type="button" data-value="Prevenção">Prevenção</button>
+              <button class="option-btn" type="button" data-value="Biologia do corpo">Biologia do corpo</button>
+              <button class="option-btn" type="button" data-value="Bem-estar emocional">Bem-estar emocional</button>
+            </div>
+          </div>
+
+          <div class="onboarding-actions">
+            <button type="button" class="button secondary hidden" id="back-question">Voltar</button>
+            <button type="button" class="button primary" id="next-question">Continuar</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="personalized-banner hidden" id="personalized-banner">
+        <div class="container banner-inner">
+          <div>
+            <p class="eyebrow">Resumo da sua jornada</p>
+            <h3>Você está vivendo a fase de <span id="user-phase">Puberdade</span> e quer explorar mais sobre <span id="user-interest">autocuidado</span>, com cuidado e acolhimento.</h3>
+          </div>
+          <button type="button" class="button primary" id="start-learning">Ver conteúdo personalizado</button>
+        </div>
+      </section>
+
+      <section class="personalized-content hidden" id="personalized-content" aria-live="polite">
+        <div class="container personalized-shell">
+          <div class="personalized-header">
+            <p class="eyebrow">Conteúdo para você</p>
+            <h3 id="personalized-title">Ajustes essenciais para a sua fase atual.</h3>
+          </div>
+          <div class="personalized-grid">
+            <article class="personalized-card">
+              <span class="card-badge">O que observar</span>
+              <p id="focused-point-1">Sua rotina e sinais do corpo.</p>
+            </article>
+            <article class="personalized-card">
+              <span class="card-badge">Como agir</span>
+              <p id="focused-point-2">Hábitos simples que ajudam no dia a dia.</p>
+            </article>
+            <article class="personalized-card">
+              <span class="card-badge">Quando buscar ajuda</span>
+              <p id="focused-point-3">Atenção redobrada se os sinais persistirem.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+    <main id="inicio">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Plataforma educativa</p>
+            <h1>Saúde feminina em cada etapa da vida.</h1>
+            <p class="lead">
+              O corpo feminino passa por mudanças profundas ao longo do tempo. O
+              FemCare reúne informações claras sobre cada fase para apoiar
+              aprendizado, autocuidado e bem-estar.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="#fases">Conhecer fases</a>
+              <a class="button secondary" href="#sobre">Entender o corpo</a>
+            </div>
+            <ul class="hero-metrics" aria-label="Estatísticas da plataforma">
+              <li><strong>4</strong><span>fases da vida</span></li>
+              <li><strong>+20</strong><span>mudanças biológicas</span></li>
+              <li><strong>100%</strong><span>informação acessível</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-visual" aria-label="Ilustração do ciclo da saúde feminina">
+            <div class="visual-shell">
+              <div class="orb orb-one"></div>
+              <div class="orb orb-two"></div>
+              <div class="orb orb-three"></div>
+              <div class="cycle-card">
+                <span>Hormônios</span>
+                <strong>ciclos + saúde</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre" class="intro">
+        <div class="container intro-inner">
+          <div>
+            <p class="eyebrow">O que é o FemCare</p>
+            <h2>Entenda o corpo feminino como parte de um processo natural.</h2>
+          </div>
+          <p>
+            Cada fase da vida traz transformações hormonais, físicas e emocionais.
+            Conhecer essas mudanças ajuda a reconhecer sinais do corpo, fortalecer
+            a saúde e tomar decisões mais conscientes sobre autocuidado.
+          </p>
+        </div>
+      </section>
+
+      <section id="fases" class="phases-section">
+        <div class="container phases-heading">
+          <p class="eyebrow">Fases da vida</p>
+          <h2>Descubra como o corpo feminino se transforma ao longo do tempo.</h2>
+        </div>
+
+        <div class="container phase-layout">
+          <aside class="phase-nav" aria-label="Menu de fases">
+            <button class="phase-tab is-active" data-phase="puberdade" type="button">
+              <span class="phase-number">01</span>
+              <span class="phase-copy">
+                <strong>Puberdade</strong>
+                <small>Início da maturação</small>
+              </span>
+            </button>
+            <button class="phase-tab" data-phase="adolescencia" type="button">
+              <span class="phase-number">02</span>
+              <span class="phase-copy">
+                <strong>Adolescência</strong>
+                <small>Autoconhecimento e saúde</small>
+              </span>
+            </button>
+            <button class="phase-tab" data-phase="vida-adulta" type="button">
+              <span class="phase-number">03</span>
+              <span class="phase-copy">
+                <strong>Vida adulta</strong>
+                <small>Equilíbrio e cuidado</small>
+              </span>
+            </button>
+            <button class="phase-tab" data-phase="menopausa" type="button">
+              <span class="phase-number">04</span>
+              <span class="phase-copy">
+                <strong>Menopausa</strong>
+                <small>Transição hormonal</small>
+              </span>
+            </button>
+          </aside>
+
+          <div class="phase-content" id="puberdade" data-panel="puberdade">
+            <div class="content-header">
+              <p class="eyebrow">Puberdade</p>
+              <h3>O corpo começa a se transformar.</h3>
+            </div>
+            <p>
+              Nesta fase, o organismo feminina passa por mudanças rápidas e visíveis,
+              influenciadas por hormônios e pelo desenvolvimento biológico.
+            </p>
+
+            <div class="media-row">
+              <div class="image-card image-1" aria-label="Ilustração da puberdade"></div>
+              <div class="fact-panel">
+                <h4>Você sabia?</h4>
+                <p>O primeiro ciclo menstrual pode variar bastante de pessoa para pessoa. O importante é observar sua rotina e buscar orientação se surgir dor forte, sangramento muito intenso ou desconforto frequente.</p>
+              </div>
+            </div>
+
+            <div class="changes-grid">
+              <article class="change-card">
+                <span class="tag">Biológico</span>
+                <h4>Início da menstruação</h4>
+                <p>A menarca marca o início do ciclo menstrual e da capacidade reprodutiva.</p>
+              </article>
+              <article class="change-card">
+                <span class="tag">Hormonal</span>
+                <h4>Desenvolvimento dos seios</h4>
+                <p>O aumento do tecido mamário é uma das mudanças mais visíveis dessa fase.</p>
+              </article>
+              <article class="change-card">
+                <span class="tag">Físico</span>
+                <h4>Crescimento e pubarca</h4>
+                <p>Pelos pubianos e mudanças de distribuição de gordura ajudam a configurar o corpo.</p>
+              </article>
+              <article class="change-card">
+                <span class="tag">Emocional</span>
+                <h4>Variações de humor</h4>
+                <p>Alterações hormonais podem influenciar emoções, autoestima e rotina.</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="phase-content is-hidden" id="adolescencia" data-panel="adolescencia">
+            <div class="content-header">
+              <p class="eyebrow">Adolescência</p>
+              <h3>O corpo se adapta ao ciclo e à identidade.</h3>
+            </div>
+            <p>
+              Essa etapa reforça a importância da educação sobre saúde, autocuidado e
+              entendimento do ciclo menstrual e das mudanças do corpo.
+            </p>
+
+            <div class="media-row">
+              <div class="image-card image-2" aria-label="Ilustração da adolescência"></div>
+              <div class="fact-panel">
+                <h4>Questão prática</h4>
+                <p>O uso de absorventes, o cuidado com a pele e a observação do ciclo ajudam a construir hábitos saudáveis. Conversar com uma profissional da saúde é sempre uma boa escolha.</p>
+              </div>
+            </div>
+
+            <div class="changes-grid">
+              <article class="change-card">
+                <span class="tag">Ciclo</span>
+                <h4>Regularidade menstrual</h4>
+                <p>Os ciclos podem ser irregulares inicialmente, mas passam a ganhar padrão ao longo do tempo.</p>
+              </article>
+              <article class="change-card">
+                <span class="tag">Hormonal</span>
+                <h4>Diminuição da acne</h4>
+                <p>O aumento de oleosidade e a produção hormonal podem causar pele oleosa e espinhas.</p>
+              </article>
+              <article class="change-card">
+                <span class="tag">Saúde</span>
+                <h4>Conscientização corporal</h4>
+                <p>É o momento ideal para aprender sobre prevenção, sono, alimentação e autocuidado.</p>
+              </article>
+              <article class="change-card">
+                <span class="tag">Emocional</span>
+                <h4>Autoimagem</h4>
+                <p>O corpo muda rapidamente e a autoestima precisa ser fortalecida com acolhimento e informação.</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="phase-content is-hidden" id="vida-adulta" data-panel="vida-adulta">
+            <div class="content-header">
+              <p class="eyebrow">Vida adulta</p>
+              <h3>O foco está em equilíbrio, fertilidade e prevenção.</h3>
+            </div>
+            <p>
+              Na fase adulta, a saúde feminina envolve planejamento familiar, exames,
+              hábitos de vida e atenção aos sinais do corpo ao longo dos anos.
+            </p>
+
+            <div class="media-row">
+              <div class="image-card image-3" aria-label="Ilustração da vida adulta"></div>
+              <div class="fact-panel">
+                <h4>Checklist</h4>
+                <p>Exames periódicos, sono adequado e alimentação equilibrada são fundamentais para manter o corpo em equilíbrio. A prevenção costuma ser mais eficaz do que a correção tardia.</p>
+              </div>
+            </div>
+
+            <div class="changes-grid">
+              <article class="change-card">
+                <span class="tag">Reprodutivo</span>
+                <h4>Fertilidade</h4>
+                <p>Os ciclos continuam sendo um indicador importante de saúde reprodutiva e hormonal.</p>
+              </article>
+              <article class="change-card">
+                <span class="tag">Ginecológico</span>
+                <h4>Prevenção</h4>
+                <p>Exames regulares ajudam a identificar alterações precocemente e manter a saúde em dia.</p>
+              </article>
+              <article class="change-card">
+                <span class="tag">Metabólico</span>
+                <h4>Energia e sono</h4>
+                <p>A rotina, os hormônios e o sono influenciam muito o bem-estar geral e a qualidade de vida.</p>
+              </article>
+              <article class="change-card">
+                <span class="tag">Vida</span>
+                <h4>Autocuidado</h4>
+                <p>Hábitos de alimentação, atividade física e apoio emocional são fundamentais nessa fase.</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="phase-content is-hidden" id="menopausa" data-panel="menopausa">
+            <div class="content-header">
+              <p class="eyebrow">Menopausa</p>
+              <h3>Uma transição hormonal que exige atenção e acolhimento.</h3>
+            </div>
+            <p>
+              Com a diminuição dos níveis hormonais, diversas alterações podem aparecer,
+              especialmente relacionadas à saúde óssea, cardiovascular e emocional.
+            </p>
+
+            <div class="media-row">
+              <div class="image-card image-4" aria-label="Ilustração da menopausa"></div>
+              <div class="fact-panel">
+                <h4>Cuidados essenciais</h4>
+                <p>O suporte profissional é muito importante nessa fase. Isso inclui acompanhamento de saúde óssea, pressão arterial, sono, humor e atividades físicas sustentáveis.</p>
+              </div>
+            </div>
+
+            <div class="changes-grid">
+              <article class="change-card">
+                <span class="tag">Hormonal</span>
+                <h4>Baixa de estrogênio</h4>
+                <p>A redução hormonal pode causar ondas de calor, sudorese, irritabilidade e alterações de sono.</p>
+              </article>
+              <article class="change-card">
+                <span class="tag">Óssea</span>
+                <h4>Saúde dos ossos</h4>
+                <p>O risco de osteopenia e osteoporose aumenta e a ingestão de cálcio e vitamina D é essencial.</p>
+              </article>
+              <article class="change-card">
+                <span class="tag">Cardiovascular</span>
+                <h4>Risco metabólico</h4>
+                <p>O cuidado com pressão arterial, colesterol e atividade física ganha mais importância.</p>
+              </article>
+              <article class="change-card">
+                <span class="tag">Emocional</span>
+                <h4>Bem-estar geral</h4>
+                <p>O suporte emocional e a rotina de autocuidado ajudam a reduzir sintomas e melhorar a qualidade de vida.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section">
+        <div class="container faq-header">
+          <p class="eyebrow">Perguntas frequentes</p>
+          <h2>Respostas rápidas para dúvidas comuns.</h2>
+        </div>
+
+        <div class="container faq-list" aria-label="Perguntas frequentes sobre saúde feminina">
+          <article class="faq-item active">
+            <button class="faq-question" type="button">
+              <span>Como saber se o ciclo menstrual está normal?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Nem todas as pessoas têm ciclos iguais. O mais importante é observar o padrão ao longo do tempo e buscar ajuda se houver dor intensa, sangramento muito abundante, irregularidade muito grande ou sintomas que atrapalhem a rotina.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              <span>É normal ter acne na adolescência?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Sim, é muito comum. A acne na adolescência costuma estar relacionada a mudanças hormonais e à oleosidade da pele. Cuidados com limpeza, hidratação e consulta dermatológica ajudam bastante.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              <span>O que muda na menopausa?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Há redução dos hormônios, especialmente o estrogênio, o que pode causar ondas de calor, alterações de sono, mudanças de humor e maior atenção à saúde óssea e cardiovascular.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>FemCare</p>
+        <span>Educação, autocuidado e saúde feminina.</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
